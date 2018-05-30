@@ -1,0 +1,19 @@
+.tree-menu {
+  .label-wrapper {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+}
+.icon{
+  &.icon-plus {
+    &:before {
+      content: "+";
+    }
+  }
+  &.icon-minus {
+    &:before {
+      content: "-";
+    }
+  }
+}
