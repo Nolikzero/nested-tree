@@ -11,14 +11,13 @@
     </div>
 </template>
 <script>
-function Item({id, name, description, image_url, category_id}) {
-    this.id = id;
-    this.name = name;
-    this.description = description;
-    this.image_url = image_url;
-    this.category_id = category_id;
-}
 import ItemComponent from './Item.vue';
+import Item from '../models/Item';
+
+import { getAxios } from '../libs/axios';
+const axios = getAxios();
+
+
 export default {
     name: 'items-component',
     data() {
@@ -28,7 +27,7 @@ export default {
     },
     methods: {
         read() {
-            window.axios.get('/api/categories/'+this.id+'/items').then(({data}) => {
+            axios.get('/api/categories/'+this.id+'/items').then(({data}) => {
                 Object.values(data.data).forEach(item => {
                     this.items.push(new Item(item));
                 });

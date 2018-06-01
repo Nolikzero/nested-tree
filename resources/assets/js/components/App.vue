@@ -23,22 +23,7 @@
 </template>
 
 <script>
-/*function Category({id, parent_id, lft, rgt, depth}) {
-    this.id = id;
-    this.parent_id = parent_id;
-    this.lft = lft;
-    this.rgt = rgt;
-    this.depth = depth;
-}
-function Item({id, name, description, image_url}) {
-    this.id = id;
-    this.name = name;
-    this.description = description;
-    this.image_url = image_url;
-}*/
-
 import CategoriesComponent from './Categories.vue';
-/*import ItemComponent from './Item.vue';*/
 
 export default {
     components: {

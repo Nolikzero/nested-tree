@@ -8,13 +8,12 @@
     </div>
 </template>
 <script>
-function Category({id, name, depth, children}) {
-    this.id = id;
-    this.name = name;
-    this.children = children;
-    this.depth = depth;
-}
 import CategoryComponent from './Category.vue';
+import Category from '../models/Category';
+
+import { getAxios } from '../libs/axios';
+const axios = getAxios();
+
 export default {
     name: 'categories-component',
     data() {
@@ -24,7 +23,7 @@ export default {
     },
     methods: {
         read() {
-            window.axios.get('/api/categories/tree').then(({data}) => {
+            axios.get('/api/categories/tree').then(({data}) => {
                 Object.values(data.data).forEach(category => {
                     this.categories.push(new Category(category));
                 });
