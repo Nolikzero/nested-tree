@@ -14,9 +14,7 @@
 import ItemComponent from './Item.vue';
 import Item from '../models/Item';
 
-import { getAxios } from '../libs/axios';
-const axios = getAxios();
-
+const axios = require('../libs/axios')();
 
 export default {
     name: 'items-component',

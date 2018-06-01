@@ -11,8 +11,7 @@
 import CategoryComponent from './Category.vue';
 import Category from '../models/Category';
 
-import { getAxios } from '../libs/axios';
-const axios = getAxios();
+const axios = require('../libs/axios')();
 
 export default {
     name: 'categories-component',
