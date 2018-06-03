@@ -30,15 +30,15 @@ class ItemsRepository extends ModelRepository
 
     /**
      * @param Model $model
-     * @param Request $request
+     * @param array $request
      * @return Model
      */
-    public function fill(Model $model, Request $request)
+    public function fill(Model $model, array $request)
     {
         $filename = null;
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
+        if (isset($request['image'])) {
+            $image = $request['image'];
             $destinationPath = ItemService::getUploadDir();
             $filename = md5(time()) . '.' . $image->getClientOriginalExtension();
             try {
@@ -53,9 +53,9 @@ class ItemsRepository extends ModelRepository
         }
 
         $model->fill([
-            'name' => $request->name,
-            'description' => $request->description,
-            'category_id' => $request->category_id,
+            'name' => $request['name'],
+            'description' => $request['description'],
+            'category_id' => $request['category_id'],
             'image' => $filename
         ]);
 

@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('items/{id}', 'ItemsController@update');
-Route::get('categories/tree', 'CategoriesController@tree');
-Route::get('categories/{category}/items', 'CategoryItemsController@index');
+Route::post('items/{id}', 'ItemsController@update')->name('items.update');
+Route::get('categories/tree', 'CategoriesController@tree')->name('categories.tree');
+Route::get('categories/{category}/items', 'CategoryItemsController@index')->name('category.items.index');
 
 Route::apiResource('categories', 'CategoriesController')->except('show');
 Route::apiResource('items', 'ItemsController')->except('update');

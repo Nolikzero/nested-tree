@@ -34,7 +34,7 @@ class ItemsController extends Controller {
 
     public function store(CreateItem $request)
     {
-        $model = $this->modelService->create($request);
+        $model = $this->modelService->create($request->toArray());
         return response()->json(['data' => $model->toArray()])->setStatusCode(Response::HTTP_CREATED);
     }
 
@@ -52,7 +52,7 @@ class ItemsController extends Controller {
 
     public function update(UpdateItem $request, $id)
     {
-        $model = $this->modelService->update($id, $request);
+        $model = $this->modelService->update($id, $request->toArray());
         return response()->json(['data' => $model->toArray()])->setStatusCode(Response::HTTP_OK);
     }
 

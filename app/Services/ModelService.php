@@ -37,20 +37,20 @@ abstract class ModelService
     }
 
     /**
-     * @param Request $request
+     * @param array $request
      * @return Model
      */
-    public function create(Request $request): Model
+    public function create(array $request): Model
     {
         return $this->modelRepository->store($request);
     }
 
     /**
      * @param $id
-     * @param Request $request
+     * @param array $request
      * @return Model
      */
-    public function update($id, Request $request): Model
+    public function update($id, array $request): Model
     {
         $model = $this->modelRepository->show($id);
         return $this->modelRepository->update($model, $request);

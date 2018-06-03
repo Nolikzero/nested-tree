@@ -10,7 +10,8 @@ use Illuminate\Support\Collection;
  * Class ModelRepository
  * @package App\Repositories
  */
-abstract class ModelRepository{
+abstract class ModelRepository
+{
 
     /**
      * @var Model
@@ -52,11 +53,11 @@ abstract class ModelRepository{
     }
 
     /**
-     * @param FormRequest $request
+     * @param array $request
      * @return Model
      * @throws \Exception
      */
-    public function store(FormRequest $request): Model
+    public function store(array $request): Model
     {
         try {
             $model = new $this->modelClass();
@@ -72,23 +73,33 @@ abstract class ModelRepository{
 
     /**
      * @param Model $model
-     * @param FormRequest $request
+     * @param array $request
      * @return Model
+     * @throws \Exception
      */
-    public function update(Model $model, FormRequest $request): Model
+    public function update(Model $model, array $request): Model
     {
-        $model = $this->fill($model, $request);
-        $model->save();
+        try {
+            $model = $this->fill($model, $request);
+            $model->save();
+        } catch (\Exception $e) {
+            throw $e;
+        }
 
         return $model;
     }
 
     /**
      * @param Model $model
+     * @throws \Exception
      */
     public function destroy(Model $model)
     {
-        $model->delete();
+        try {
+            $model->delete();
+        } catch (\Exception $e) {
+            throw $e;
+        }
     }
 
     /**
@@ -96,17 +107,19 @@ abstract class ModelRepository{
      * @param $attaches
      * @return mixed
      */
-    public function relation($id, $attaches){
+    public function relation($id, $attaches)
+    {
         return $this->show($id)->{$attaches}()->get();
     }
 
     /**
      * @param Model $model
-     * @param Request $request
+     * @param array $request
      * @return Model
      */
-    public function fill(Model $model, Request $request){
-        $model->fill($request->toArray());
+    public function fill(Model $model, array $request)
+    {
+        $model->fill($request);
         return $model;
     }
 }

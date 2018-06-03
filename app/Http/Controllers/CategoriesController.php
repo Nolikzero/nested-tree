@@ -36,7 +36,7 @@ class CategoriesController extends Controller {
 
     public function store(CreateCategory $request)
     {
-        $model = $this->modelService->create($request);
+        $model = $this->modelService->create($request->toArray());
         return response()->json(['data' => $model->toArray()])->setStatusCode(Response::HTTP_CREATED);
     }
 
@@ -54,7 +54,7 @@ class CategoriesController extends Controller {
 
     public function update(UpdateCategory $request, $id)
     {
-        $model = $this->modelService->update($id, $request);
+        $model = $this->modelService->update($id, $request->toArray());
         return response()->json(['data' => $model->toArray()])->setStatusCode(Response::HTTP_OK);
     }
 
